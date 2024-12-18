@@ -231,21 +231,10 @@ require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   {
-    'windwp/nvim-ts-autotag', -- Autoclosing html tag
-    opts = {
-      -- Defaults
-      enable_close = true, -- Auto close tags
-      enable_rename = true, -- Auto rename pairs of tags
-      enable_close_on_slash = false, -- Auto close on trailing </
-    },
-    -- Also override individual filetype configs, these take priority.
-    -- Empty by default, useful if one of the "opts" global settings
-    -- doesn't work well in a specific filetype
-    per_filetype = {
-      ['html'] = {
-        enable_close = false,
-      },
-    },
+    'windwp/nvim-ts-autotag',
+    config = function()
+      require('nvim-ts-autotag').setup()
+    end,
   },
   {
     'nvimdev/dashboard-nvim',
@@ -986,11 +975,8 @@ require('lazy').setup({
       ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
       -- Autoinstall languages that are not installed
       auto_install = true,
-      autopairs = {
-        enable = true,
-      },
       autotag = {
-        enable = true,
+        enable = false,
       },
       highlight = {
         enable = true,
